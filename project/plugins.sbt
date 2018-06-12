@@ -8,3 +8,4 @@ addSbtPlugin("com.lucidchart"            % "sbt-scalafmt"         % "1.15")
 // Convenient helpers, not required
 addSbtPlugin("com.timushev.sbt"          % "sbt-updates"          % "0.3.4")
 
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.6.0-M8")

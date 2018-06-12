@@ -1,5 +1,6 @@
 import sbt._
 import sbt.Keys._
+import scalafix.sbt.ScalafixPlugin.autoImport._
 
 object BuildSettings {
 
@@ -18,8 +19,11 @@ object BuildSettings {
   lazy val storeBintrayCredentials = taskKey[Unit]("Store bintray credentials.")
   lazy val credentialsFile = Path.userHome / ".bintray" / ".credentials"
 
-  lazy val baseSettings = GitVersion.settings
-
+  lazy val baseSettings = GitVersion.settings ++ Seq(
+    addCompilerPlugin(scalafixSemanticdb),
+    scalacOptions += "-Yrangepos"
+  )
+ 
   lazy val buildSettings = baseSettings ++ Seq(
     organization := "com.netflix.atlas_v1",
     scalaVersion := Dependencies.Versions.scala,
